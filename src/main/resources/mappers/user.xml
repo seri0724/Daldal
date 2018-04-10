@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.daldal.springboot.mapper.UserMapper">
+	<select id="selectId" parameterType="String" resultType="String">
+		<![CDATA[
+			select id
+			from users
+			where id = #{joinIdCheck}
+		]]>
+	</select>
+	
+	<select id="selectNickNameByUserIdAndPw" 
+			parameterType="com.daldal.springboot.userdto.UserLoginDto" 
+			resultType="com.daldal.springboot.uservo.UserLoginVo">
+		<![CDATA[
+			select nickname
+			from users
+			where id = #{id}
+			  and pw = #{pw}
+		]]>
+	</select>
+</mapper>
