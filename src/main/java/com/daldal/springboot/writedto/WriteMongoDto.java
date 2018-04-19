@@ -12,7 +12,7 @@ public class WriteMongoDto {
 	private int day;
 	private int starttime;
 	private int endtime;
-	private int peopleNo;
+	private int peopleno;
 	private int cost;
 	private String volunteer;
 	private String city;
@@ -23,7 +23,7 @@ public class WriteMongoDto {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public WriteMongoDto(String id, String division, int month, int day, int starttime, int endtime, int peopleNo,
+	public WriteMongoDto(String id, String division, int month, int day, int starttime, int endtime, int peopleno,
 			int cost, String volunteer, String city, String borough, String dong, int radius) {
 		super();
 		this.id = id;
@@ -32,7 +32,7 @@ public class WriteMongoDto {
 		this.day = day;
 		this.starttime = starttime;
 		this.endtime = endtime;
-		this.peopleNo = peopleNo;
+		this.peopleno = peopleno;
 		this.cost = cost;
 		this.volunteer = volunteer;
 		this.city = city;
@@ -76,11 +76,11 @@ public class WriteMongoDto {
 	public void setEndtime(int endtime) {
 		this.endtime = endtime;
 	}
-	public int getPeopleNo() {
-		return peopleNo;
+	public int getPeopleno() {
+		return peopleno;
 	}
-	public void setPeopleNo(int peopleNo) {
-		this.peopleNo = peopleNo;
+	public void setPeopleno(int peopleno) {
+		this.peopleno = peopleno;
 	}
 	public int getCost() {
 		return cost;
@@ -121,10 +121,12 @@ public class WriteMongoDto {
 	@Override
 	public String toString() {
 		return "WriteMongoDto [id=" + id + ", division=" + division + ", month=" + month + ", day=" + day
-				+ ", starttime=" + starttime + ", endtime=" + endtime + ", peopleNo=" + peopleNo + ", cost=" + cost
+				+ ", starttime=" + starttime + ", endtime=" + endtime + ", peopleno=" + peopleno + ", cost=" + cost
 				+ ", volunteer=" + volunteer + ", city=" + city + ", borough=" + borough + ", dong=" + dong
 				+ ", radius=" + radius + "]";
 	}
+	
+	
 	
 	
 }

@@ -6,7 +6,7 @@
 		<![CDATA[
 			select id
 			from users
-			where id = #{joinidcheck}
+			where id = #{joinIdCheck}
 		]]>
 	</select>
 	

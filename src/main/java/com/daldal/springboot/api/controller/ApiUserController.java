@@ -1,9 +1,13 @@
 package com.daldal.springboot.api.controller;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,21 +31,23 @@ public class ApiUserController {
 	private UserService userservice;
 	
 	@RequestMapping(value="/overlap")
-	public String test(@RequestParam("joinIdCheck") String joinidcheck) {
-		System.out.println(joinidcheck);
-		String userid = usermapper.selectId(joinidcheck);
+	public String test(@RequestBody Map<String,String> map) {
+		
+		String getId =  map.get("joinidcheck");
+		System.out.println(getId);
+		String userid = usermapper.selectId(getId);
 		String res;
 		if(userid == null) {
 			res = "possible";
 		}else {
 			res = "impossible";
 		}
+		System.out.println("res:"+res);
 		return res;
 	}
 	
-	@RequestMapping(value="/login",method=RequestMethod.GET)
-	public UserLoginVo login(@ModelAttribute UserLoginDto userlogindto,
-								HttpSession session) {
+	@RequestMapping(value="/login", method=RequestMethod.POST)
+	public UserLoginVo login(@RequestBody UserLoginDto userlogindto, HttpSession session) {
 		System.out.println(userlogindto.toString());
 		UserLoginVo userloginvo = userservice.loginsession(userlogindto);
 		session.setAttribute("authUser", userloginvo);
@@ -56,13 +62,13 @@ public class ApiUserController {
 	}
 	
 	@RequestMapping(value="/join",method=RequestMethod.GET)
-	public UserJoinDto join(@ModelAttribute UserJoinDto userjoindto) {
+	public UserJoinDto join(@RequestBody UserJoinDto userjoindto) {
 		System.out.println(userjoindto.toString());
 		return userjoindto;
 	}
 	
 	@RequestMapping(value="/write")
-	public WriteMongoDto write(@ModelAttribute WriteMongoDto writemongodto) {
+	public WriteMongoDto write(@RequestBody WriteMongoDto writemongodto) {
 		System.out.println(writemongodto.toString());
 		//세션에서 아이디값 받아와서 dto에 넣어줘야함
 		return writemongodto;
